@@ -3,6 +3,7 @@ import './assets/css/sidebar.css';
 import { projectFactory } from './todo' ;
 import { dom } from './domManipulation';
 import { storage } from './activeStorage';
+import { layouts } from './layouts'
 
 function validateStr(str, max, min = 0) {
   if (str.length < max && str.length > min) {
@@ -30,7 +31,11 @@ dom.setEventHandler('.project-button', 'click', projectHandler);
 
 storage.load();
 let allProjects = storage.getProjects();
-allProjects.forEach( element =>
-  document.getElementById('diplay-projects').innerHTML += ` <li class="each-project"> ${element.name} </li> `
+let layoutProjects = "";
+allProjects.forEach( element => {
+  layoutProjects += layouts.project(element.name);
+  }
 );
-console.log(storage.getProjects())
+
+dom.render(dom.getElement(document, '.diplay-projects'), layoutProjects );
+console.log(storage.getProjects());
