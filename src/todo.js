@@ -1,9 +1,30 @@
 
-const project = (name) => ({ name });
+const projectFactory = (name) => { 
+  const todos = [];
 
-const todo = (title, description, dueDate, priority, notes, checkList) => ({
-  title, description, dueDate, priority, notes, checkList,
-});
+  const addTodo = function addTodo(title, description = '', priority = 0) {
+    this.todos.push(todoFactory(title,description,priority));
+  };
 
+  return {
+    name,
+    todos,
+    addTodo
+  }
+};
 
-export { project, todo };
+const todoFactory = (title, description = '', priority = 0) => {
+  const dueDate = '2020-04-28';
+  const checked = false;
+  const notes = [];
+  return {
+    title, 
+    description, 
+    dueDate, 
+    priority, 
+    notes, 
+    checked
+  }
+};
+
+export { projectFactory };

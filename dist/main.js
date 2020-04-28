@@ -140,7 +140,19 @@ eval("var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/style.css */ \"./src/assets/css/style.css\");\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__);\n\n\ndocument.querySelector('.container').textContent = 'It works';\n\n\n\nconsole.log(taskOne);\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/style.css */ \"./src/assets/css/style.css\");\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todo */ \"./src/todo.js\");\n\n\n\ndocument.querySelector('.container').textContent = 'It works';\n\n\nconst project = Object(_todo__WEBPACK_IMPORTED_MODULE_1__[\"projectFactory\"])('todo list app');\n\nproject.addTodo('set repository');\nconsole.log(project);\n\nlet strProject = JSON.stringify(project, undefined, 2);\nconsole.log(strProject);\n\nconsole.log(JSON.parse(strProject));\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/todo.js":
+/*!*********************!*\
+  !*** ./src/todo.js ***!
+  \*********************/
+/*! exports provided: projectFactory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"projectFactory\", function() { return projectFactory; });\n\nconst projectFactory = (name) => { \n  const todos = [];\n\n  const addTodo = function addTodo(title, description = '', priority = 0) {\n    this.todos.push(todoFactory(title,description,priority));\n  };\n\n  return {\n    name,\n    todos,\n    addTodo\n  }\n};\n\nconst todoFactory = (title, description = '', priority = 0) => {\n  const dueDate = '2020-04-28';\n  const checked = false;\n  const notes = [];\n  return {\n    title, \n    description, \n    dueDate, \n    priority, \n    notes, \n    checked\n  }\n};\n\n\n\n\n//# sourceURL=webpack:///./src/todo.js?");
 
 /***/ })
 
