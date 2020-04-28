@@ -6,12 +6,12 @@ const local = (function() {
 
   function retrieveArr() {
     let arr = [];
-    if (window.localStorage.getItem('project') !== null) arr = JSON.parse(window.localStorage.getItem('library'));
+    if (window.localStorage.getItem('project') !== null) arr = JSON.parse(window.localStorage.getItem('project'));
     return arr;
   }
 
-  return  { 
-    retrieveArr, 
+  return  {
+    retrieveArr,
     saveArr
   };
 
