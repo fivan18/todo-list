@@ -1,12 +1,16 @@
-const local = (function() {
+import { projectFactory } from './todo'
 
+const local = (function() {
+  const storageName = 'projects';
   function saveArr(arr) {
-    window.localStorage.setItem('projects', JSON.stringify(arr));
+    window.localStorage.setItem(storageName, JSON.stringify(arr));
   }
 
   function retrieveArr() {
     let arr = [];
-    if (window.localStorage.getItem('project') !== null) arr = JSON.parse(window.localStorage.getItem('project'));
+    if (window.localStorage.getItem(storageName) !== null) {
+      arr = JSON.parse(window.localStorage.getItem(storageName));
+    }
     return arr;
   }
 

@@ -26,7 +26,11 @@ function projectHandler(event){
 dom.setEventHandler('.project-button', 'click', projectHandler);
 
 
-let allProjects = (JSON.parse(window.localStorage.getItem('projects')));
+
+
+storage.load();
+let allProjects = storage.getProjects();
 allProjects.forEach( element =>
   document.getElementById('diplay-projects').innerHTML += ` <li class="each-project"> ${element.name} </li> `
 );
+console.log(storage.getProjects())
