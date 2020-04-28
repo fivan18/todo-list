@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \".container {\\n  background-color: gray;\\n}\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./src/assets/css/style.css?./node_modules/css-loader/dist/cjs.js");
+eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \"\\n.side-bar {\\n  height: 100%;\\n  width: 260px;\\n  position: fixed;\\n  z-index: 1;\\n  top: 0;\\n  left: 0;\\n  background-color: #f7f7f7 ;\\n  overflow-x: hidden;\\n  padding-top: 20px;\\n}\\n\\n.app-name {\\ntext-align: center;\\n}\\n\\n.projects {\\n  padding-left: 30px;\\n}\\n\\n.main {\\n  margin-left: 260px; /* Same as the width of the sidenav */\\n  font-size: 28px; /* Increased text to enable scrolling */\\n  padding: 0px 10px;\\n}\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./src/assets/css/style.css?./node_modules/css-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -140,7 +140,19 @@ eval("var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/style.css */ \"./src/assets/css/style.css\");\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todo */ \"./src/todo.js\");\n\n\n\ndocument.querySelector('.container').textContent = 'It works';\n\n\nconst project = Object(_todo__WEBPACK_IMPORTED_MODULE_1__[\"projectFactory\"])('todo list app');\n\nproject.addTodo('set repository');\nconsole.log(project);\n\nlet strProject = JSON.stringify(project, undefined, 2);\nconsole.log(strProject);\n\nconsole.log(JSON.parse(strProject));\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/style.css */ \"./src/assets/css/style.css\");\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todo */ \"./src/todo.js\");\n/* harmony import */ var _local_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./local_storage */ \"./src/local_storage.js\");\n\n\n\n\n\nconst project = Object(_todo__WEBPACK_IMPORTED_MODULE_1__[\"projectFactory\"])('todo list app');\n\n\nproject.addTodo('set repository');\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/local_storage.js":
+/*!******************************!*\
+  !*** ./src/local_storage.js ***!
+  \******************************/
+/*! exports provided: localStorage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"localStorage\", function() { return localStorage; });\nvar localStorage = (function() {\n\n  function saveArr(arr) {\n    window.localStorage.setItem('library', JSON.stringify(arr));\n  }\n\n  function retrieveArr() {\n    let arr = [];\n    if (window.localStorage.getItem('library') !== null) arr = JSON.parse(window.localStorage.getItem('library'));\n    return arr;\n  }\n\n  return  { retrieveArr, saveArr }\n\n})();\n\n\n\n\n//# sourceURL=webpack:///./src/local_storage.js?");
 
 /***/ }),
 
