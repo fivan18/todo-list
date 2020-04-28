@@ -154,6 +154,18 @@ eval("var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/
 
 /***/ }),
 
+/***/ "./src/domManipulation.js":
+/*!********************************!*\
+  !*** ./src/domManipulation.js ***!
+  \********************************/
+/*! exports provided: dom */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"dom\", function() { return dom; });\nconst dom = (function(){\n  function render(element, content) {\n    element.innerHTML = content;\n  }\n  \n  function getElement(element, target) {\n    return element.querySelector(target);\n  }\n  \n  function addClass(element, theClass) {\n    element.classList.add(theClass);\n  }\n  function removeClass(element, theClass) {\n    element.classList.remove(theClass);\n  }\n  \n  function setEventHandler(selector, event, handler) {\n    const items = [...document.querySelectorAll(selector)];\n    items.forEach((item) => {\n      item.addEventListener(event, handler);\n    });\n  }\n\n  return {\n    render,\n    getElement,\n    addClass,\n    removeClass,\n    setEventHandler,\n  } \n})();\n\n\n\n\n\n\n\n//# sourceURL=webpack:///./src/domManipulation.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -162,7 +174,7 @@ eval("var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/style.css */ \"./src/assets/css/style.css\");\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _assets_css_sidebar_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/css/sidebar.css */ \"./src/assets/css/sidebar.css\");\n/* harmony import */ var _assets_css_sidebar_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_css_sidebar_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./todo */ \"./src/todo.js\");\n/* harmony import */ var _local_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./local_storage */ \"./src/local_storage.js\");\n\n\n\n\n\n\nconst project = Object(_todo__WEBPACK_IMPORTED_MODULE_2__[\"projectFactory\"])('todo list app');\n\n\nproject.addTodo('set repository');\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/style.css */ \"./src/assets/css/style.css\");\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _assets_css_sidebar_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/css/sidebar.css */ \"./src/assets/css/sidebar.css\");\n/* harmony import */ var _assets_css_sidebar_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_css_sidebar_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./todo */ \"./src/todo.js\");\n/* harmony import */ var _local_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./local_storage */ \"./src/local_storage.js\");\n/* harmony import */ var _domManipulation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./domManipulation */ \"./src/domManipulation.js\");\n\n\n\n\n\n\nfunction validateStr(str, max, min = 0) {\n  if (str.length < max && str.length > min) {\n    return true;\n  }\n  return false;\n}\n\nfunction projectHandler(event){\n  const input = _domManipulation__WEBPACK_IMPORTED_MODULE_4__[\"dom\"].getElement(document, '.project-input').value;\n  console.log(input);\n  if (validateStr(input, 20, 5)) {\n    const project = Object(_todo__WEBPACK_IMPORTED_MODULE_2__[\"projectFactory\"])(input);\n    console.log(project);\n  } else {\n    console.log('let user know that she/he needs to write a better name');\n  }\n}\n\n_domManipulation__WEBPACK_IMPORTED_MODULE_4__[\"dom\"].setEventHandler('.project-button', 'click', projectHandler);\n\n\n\n// ;\n// project.addTodo('set repository');\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
