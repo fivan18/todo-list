@@ -1,8 +1,8 @@
 import './assets/css/style.css';
 import './assets/css/sidebar.css';
 import { projectFactory } from './todo' ;
-import { localStorage } from './local_storage' ;
-import { dom } from './domManipulation'
+import { dom } from './domManipulation';
+import { storage } from './activeStorage';
 
 function validateStr(str, max, min = 0) {
   if (str.length < max && str.length > min) {
@@ -16,6 +16,7 @@ function projectHandler(event){
   console.log(input);
   if (validateStr(input, 20, 5)) {
     const project = projectFactory(input);
+    storage.addProject(project);
     console.log(project);
   } else {
     console.log('let user know that she/he needs to write a better name');
@@ -24,7 +25,3 @@ function projectHandler(event){
 
 dom.setEventHandler('.project-button', 'click', projectHandler);
 
-
-
-// ;
-// project.addTodo('set repository');
