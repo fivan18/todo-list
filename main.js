@@ -132,6 +132,18 @@ eval("\n\nvar isOldIE = function isOldIE() {\n  var memo;\n  return function mem
 
 /***/ }),
 
+/***/ "./src/activeStorage.js":
+/*!******************************!*\
+  !*** ./src/activeStorage.js ***!
+  \******************************/
+/*! exports provided: storage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"storage\", function() { return storage; });\n/* harmony import */ var _localStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./localStorage */ \"./src/localStorage.js\");\n\n\nconst storage = (function() {\n  let projects = [];\n\n  function addProject(project) {\n    projects.push(project);\n    _localStorage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].saveArr(projects);\n  }\n\n  return {\n    addProject\n  };\n\n})();\n\n\n\n//# sourceURL=webpack:///./src/activeStorage.js?");
+
+/***/ }),
+
 /***/ "./src/assets/css/sidebar.css":
 /*!************************************!*\
   !*** ./src/assets/css/sidebar.css ***!
@@ -174,19 +186,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/style.css */ \"./src/assets/css/style.css\");\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _assets_css_sidebar_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/css/sidebar.css */ \"./src/assets/css/sidebar.css\");\n/* harmony import */ var _assets_css_sidebar_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_css_sidebar_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./todo */ \"./src/todo.js\");\n/* harmony import */ var _local_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./local_storage */ \"./src/local_storage.js\");\n/* harmony import */ var _domManipulation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./domManipulation */ \"./src/domManipulation.js\");\n\n\n\n\n\n\nfunction validateStr(str, max, min = 0) {\n  if (str.length < max && str.length > min) {\n    return true;\n  }\n  return false;\n}\n\nfunction projectHandler(event){\n  const input = _domManipulation__WEBPACK_IMPORTED_MODULE_4__[\"dom\"].getElement(document, '.project-input').value;\n  console.log(input);\n  if (validateStr(input, 20, 5)) {\n    const project = Object(_todo__WEBPACK_IMPORTED_MODULE_2__[\"projectFactory\"])(input);\n    console.log(project);\n  } else {\n    console.log('let user know that she/he needs to write a better name');\n  }\n}\n\n_domManipulation__WEBPACK_IMPORTED_MODULE_4__[\"dom\"].setEventHandler('.project-button', 'click', projectHandler);\n\n\n\n// ;\n// project.addTodo('set repository');\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/style.css */ \"./src/assets/css/style.css\");\n/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _assets_css_sidebar_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/css/sidebar.css */ \"./src/assets/css/sidebar.css\");\n/* harmony import */ var _assets_css_sidebar_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_css_sidebar_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./todo */ \"./src/todo.js\");\n/* harmony import */ var _domManipulation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./domManipulation */ \"./src/domManipulation.js\");\n/* harmony import */ var _activeStorage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./activeStorage */ \"./src/activeStorage.js\");\n\n\n\n\n\n\nfunction validateStr(str, max, min = 0) {\n  if (str.length < max && str.length > min) {\n    return true;\n  }\n  return false;\n}\n\nfunction projectHandler(event){\n  const input = _domManipulation__WEBPACK_IMPORTED_MODULE_3__[\"dom\"].getElement(document, '.project-input').value;\n  console.log(input);\n  if (validateStr(input, 20, 5)) {\n    const project = Object(_todo__WEBPACK_IMPORTED_MODULE_2__[\"projectFactory\"])(input);\n    _activeStorage__WEBPACK_IMPORTED_MODULE_4__[\"storage\"].addProject(project);\n    console.log(project);\n  } else {\n    console.log('let user know that she/he needs to write a better name');\n  }\n}\n\n_domManipulation__WEBPACK_IMPORTED_MODULE_3__[\"dom\"].setEventHandler('.project-button', 'click', projectHandler);\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
-/***/ "./src/local_storage.js":
-/*!******************************!*\
-  !*** ./src/local_storage.js ***!
-  \******************************/
-/*! exports provided: localStorage */
+/***/ "./src/localStorage.js":
+/*!*****************************!*\
+  !*** ./src/localStorage.js ***!
+  \*****************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"localStorage\", function() { return localStorage; });\nvar localStorage = (function() {\n\n  function saveArr(arr) {\n    window.localStorage.setItem('library', JSON.stringify(arr));\n  }\n\n  function retrieveArr() {\n    let arr = [];\n    if (window.localStorage.getItem('library') !== null) arr = JSON.parse(window.localStorage.getItem('library'));\n    return arr;\n  }\n\n  return  { retrieveArr, saveArr }\n\n})();\n\n\n\n\n//# sourceURL=webpack:///./src/local_storage.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst local = (function() {\n\n  function saveArr(arr) {\n    window.localStorage.setItem('projects', JSON.stringify(arr));\n  }\n\n  function retrieveArr() {\n    let arr = [];\n    if (window.localStorage.getItem('project') !== null) arr = JSON.parse(window.localStorage.getItem('library'));\n    return arr;\n  }\n\n  return  { \n    retrieveArr, \n    saveArr\n  };\n\n})();\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (local);\n\n\n//# sourceURL=webpack:///./src/localStorage.js?");
 
 /***/ }),
 
