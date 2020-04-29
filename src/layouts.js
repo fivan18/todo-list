@@ -1,6 +1,6 @@
 const layouts = (function() {
 
-  function project(item, index) {
+  function project(item, index, indexParent = -1) {
     return ` <li class="each-project" onClick="displayTodos(${index})"> ${item.name} </li> ` ;
   }
 
@@ -22,7 +22,7 @@ const layouts = (function() {
     return htmlNotes;
   }
 
-  function todoItem(item){
+  function todoItem(item, index, indexParent){
     return `
       <div class="todo-item">
         <div class="main-content-todo">
@@ -45,6 +45,8 @@ const layouts = (function() {
             ${getHTMLNotes(item.notes)}
           </ul>
         </div>
+        <button class="delete" onClick="delete(${index},${indexParent})"></button>
+        <button class="edit" onClick="edit(${index},${indexParent})"></button>
       </div>  
     `;
   }

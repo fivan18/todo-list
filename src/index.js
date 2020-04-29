@@ -16,10 +16,10 @@ function validateDateFormat(str){
   return /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/.test(str);
 }
 
-function renderItems(items, callback, container){
+function renderItems(items, callback, container, indexParent = -1){
   let layout = "";
   items.forEach((item, index) => {
-    layout += callback(item, index);
+    layout += callback(item, index, indexParent);
   });
   dom.render(dom.getElement(document, container), layout);
 }
@@ -31,7 +31,7 @@ window.displayTodos = function displayTodos(index) {
   dom.render(createTodoForm, projects[index].name);
   dom.append(createTodoForm, layouts.todoInput(index));
   const allTodos = projects[index].todos;
-  renderItems(allTodos, layouts.todoItem, '.todos');
+  renderItems(allTodos, layouts.todoItem, '.todos', index);
 };
 
 // handelr to create a todo
