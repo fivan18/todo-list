@@ -5,6 +5,17 @@ import { dom } from './domManipulation';
 import { storage } from './activeStorage';
 import { layouts } from './layouts'
 
+function validateStr(str, max, min = 0) {
+  if (str.length < max && str.length > min) {
+    return true;
+  }
+  return false;
+}
+
+function validateDateFormat(str){
+  return /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/.test(str);
+}
+
 // handler to display todos for a specific project
 window.displayTodos = function displayTodos(index) {
   const projects = storage.getProjects();
@@ -19,21 +30,18 @@ window.todoHandler = function todoHandler(index){
   const projects = storage.getProjects();
   const activityInput = dom.getElement(document,'.todo-name').value;
   const activityDate = dom.getElement(document,'.todo-date').value;
-  if (validateStr(activityInput, 50, 5) && validateStr(activityDate, 11, 0)){
-    console.log(activityDate);
+  if (
+    validateStr(activityInput, 50, 5) && 
+    validateStr(activityDate, 11, 0) &&
+    validateDateFormat(activityDate)
+  ){
     projects[index].addTodo(activityInput, activityDate);
     storage.save();
+    
   }
 }
 
 // handler to create a prject
-function validateStr(str, max, min = 0) {
-  if (str.length < max && str.length > min) {
-    return true;
-  }
-  return false;
-}
-
 function projectHandler(event){
   const input = dom.getElement(document, '.project-input').value;
   console.log(input);
