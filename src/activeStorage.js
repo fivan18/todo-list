@@ -12,16 +12,16 @@ const storage = (function() {
   }
 
   function load() {
-    const localProjects = local.retrieveArr();
+    let localProjects = local.retrieveArr();
     if (localProjects.length === 0){
       createDefaultProject();
-      localProjects = local.retrieveArr();
+    }else {
+      projects = [];
+      localProjects.forEach(localProject => {
+        let completeProject = Object.assign(projectFactory(''), localProject);
+        projects.push(completeProject);
+      });
     }
-    projects = [];
-    localProjects.forEach(localProject => {
-      let completeProject = Object.assign(projectFactory(''), localProject);
-      projects.push(completeProject);
-    });
   }
 
   function save() {
