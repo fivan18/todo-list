@@ -15,6 +15,8 @@ window.displayTodos = function displayTodos(index) {
   console.log(projects[index]);
 };
 
+// handler to create a todo
+
 
 // handler to create a prject
 function validateStr(str, max, min = 0) {
