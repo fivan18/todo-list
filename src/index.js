@@ -9,8 +9,10 @@ import { layouts } from './layouts'
 window.displayTodos = function displayTodos(index) {
   const projects = storage.getProjects();
   const todos = dom.getElement(document,'.todos');
-  dom.render(todos, projects[index].name);
-  dom.append(todos, layouts.todoInput());
+  const createTodoForm = dom.getElement(document,'.create-todo-form');
+  dom.render(createTodoForm, projects[index].name);
+  dom.append(createTodoForm, layouts.todoInput());
+  console.log(projects[index]);
 };
 
 
