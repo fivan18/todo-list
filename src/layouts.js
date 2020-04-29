@@ -1,7 +1,7 @@
 const layouts = (function() {
 
-  function project(name) {
-    return ` <li class="each-project"> ${name} </li> ` ;
+  function project(name, index) {
+    return ` <li class="each-project" onClick="displayTodos(${index})"> ${name} </li> ` ;
   }
 
 
