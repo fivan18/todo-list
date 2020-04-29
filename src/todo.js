@@ -3,7 +3,7 @@ const projectFactory = (name) => {
   const todos = [];
 
   const addTodo = function addTodo(title, dueDate, description = '', priority = 0) {
-    this.todos.push(todoFactory(title, dueDate, description, priority));
+    return this.todos.push(todoFactory(title, dueDate, description, priority)) - 1;
   };
 
   return {

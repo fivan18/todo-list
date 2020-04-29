@@ -14,8 +14,44 @@ const layouts = (function() {
           `
   }
 
+  function getHTMLNotes(notes) {
+    let htmlNotes = '';
+    notes.forEach(note => {
+      htmlNotes += `<li>${note}</li>`;
+    });
+    return htmlNotes;
+  }
+
+  function todoItem(item){
+    return `
+      <div class="todo-item">
+        <div class="main-content-todo">
+          <form action="#">
+            <label>
+              <input type="checkbox" class="" value="first_checkbox" ${item.checked ? checked : ''}>
+              ${item.title}
+            </label>
+          </form>
+          <div class="priority-todo">
+            ${item.priority}
+          </div>
+        </div>
+        <p>${item.description}</p>
+        <div>
+          <time datetime="${item.dueDate}">${item.dueDate}</time>
+        </div>
+        <div>
+          <ul>
+            ${getHTMLNotes(item.notes)}
+          </ul>
+        </div>
+      </div>  
+    `;
+  }
+
 
   return {
+    todoItem,
     project,
     todoInput
   };

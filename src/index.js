@@ -35,9 +35,13 @@ window.todoHandler = function todoHandler(index){
     validateStr(activityDate, 11, 0) &&
     validateDateFormat(activityDate)
   ){
-    projects[index].addTodo(activityInput, activityDate);
+    // save it as instance an local storage
+    const todoIndex = projects[index].addTodo(activityInput, activityDate);
     storage.save();
-    
+
+    // show it in the user interface 
+    const newItem = projects[index].todos[todoIndex];
+    dom.append(dom.getElement(document, '.todos'), layouts.todoItem(newItem));
   }
 }
 
