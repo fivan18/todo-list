@@ -1,8 +1,8 @@
 
-const projectFactory = (name) => { 
+const projectFactory = (name) => {
   const todos = [];
 
-  const addTodo = function addTodo(title, description = '', priority = 0) {
+  const addTodo = function addTodo(title, dueDate, description = '', priority = 0) {
     this.todos.push(todoFactory(title,description,priority));
   };
 
@@ -13,16 +13,15 @@ const projectFactory = (name) => {
   }
 };
 
-const todoFactory = (title, description = '', priority = 0) => {
-  const dueDate = '2020-04-28';
+const todoFactory = (title, dueDate, description = '', priority = 0) => {
   const checked = false;
   const notes = [];
   return {
-    title, 
-    description, 
-    dueDate, 
-    priority, 
-    notes, 
+    title,
+    description,
+    dueDate,
+    priority,
+    notes,
     checked
   }
 };

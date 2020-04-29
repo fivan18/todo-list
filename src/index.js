@@ -20,11 +20,10 @@ window.todoHandler = function todoHandler(index){
   const activityInput = dom.getElement(document,'.todo-name').value;
   const activityDate = dom.getElement(document,'.todo-date').value;
   if (validateStr(activityInput, 50, 5)){
-    projects[index].addTodo(activityInput);
-    console.log(projects);
+    projects[index].addTodo(activityInput, activityDate);
+    storage.save();
   }
 }
-
 
 // handler to create a prject
 function validateStr(str, max, min = 0) {
@@ -58,3 +57,6 @@ allProjects.forEach( (project, index) => {
   layoutProjects += layouts.project(project.name, index);
 });
 dom.render(dom.getElement(document, '.diplay-projects'), layoutProjects );
+
+
+console.log(storage.getProjects());

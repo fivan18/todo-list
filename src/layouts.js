@@ -9,7 +9,7 @@ const layouts = (function() {
           <form >
             <input type="text" class="todo-name" name="" value="" placeholder="Add new activity">
             <input type="date" class="todo-date" name="">
-            <button class ="todo-button"  type="button" onClick="todoHandler(${index})" >Save Todo</button>
+            <button class ="todo-button" type="button" onClick="todoHandler(${index})" >Save Todo</button>
           </form>
           `
   }
