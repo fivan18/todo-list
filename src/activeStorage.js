@@ -13,6 +13,10 @@ const storage = (function() {
 
   function load() {
     const localProjects = local.retrieveArr();
+    if (localProjects.length === 0){
+      createDefaultProject();
+      localProjects = local.retrieveArr();
+    }
     projects = [];
     localProjects.forEach(localProject => {
       let completeProject = Object.assign(projectFactory(''), localProject);
@@ -22,6 +26,12 @@ const storage = (function() {
 
   function save() {
     local.saveArr(projects);
+  }
+
+  function createDefaultProject(){
+    let defaultProject = "Default Project";
+    const project = projectFactory(defaultProject);
+    addProject(project);
   }
 
   return {

@@ -31,7 +31,7 @@ window.todoHandler = function todoHandler(index){
   const activityInput = dom.getElement(document,'.todo-name').value;
   const activityDate = dom.getElement(document,'.todo-date').value;
   if (
-    validateStr(activityInput, 50, 5) && 
+    validateStr(activityInput, 50, 5) &&
     validateStr(activityDate, 11, 0) &&
     validateDateFormat(activityDate)
   ){
@@ -39,7 +39,7 @@ window.todoHandler = function todoHandler(index){
     const todoIndex = projects[index].addTodo(activityInput, activityDate);
     storage.save();
 
-    // show it in the user interface 
+    // show it in the user interface
     const newItem = projects[index].todos[todoIndex];
     dom.append(dom.getElement(document, '.todos'), layouts.todoItem(newItem));
   }
