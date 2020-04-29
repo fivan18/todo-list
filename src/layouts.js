@@ -1,7 +1,7 @@
 const layouts = (function() {
 
-  function project(name, index) {
-    return ` <li class="each-project" onClick="displayTodos(${index})"> ${name} </li> ` ;
+  function project(item, index) {
+    return ` <li class="each-project" onClick="displayTodos(${index})"> ${item.name} </li> ` ;
   }
 
   function todoInput(index){

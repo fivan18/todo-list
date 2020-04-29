@@ -16,13 +16,22 @@ function validateDateFormat(str){
   return /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/.test(str);
 }
 
+function renderItems(items, callback, container){
+  let layout = "";
+  items.forEach((item, index) => {
+    layout += callback(item, index);
+  });
+  dom.render(dom.getElement(document, container), layout);
+}
+
 // handler to display todos for a specific project
 window.displayTodos = function displayTodos(index) {
   const projects = storage.getProjects();
   const createTodoForm = dom.getElement(document,'.create-todo-form');
   dom.render(createTodoForm, projects[index].name);
   dom.append(createTodoForm, layouts.todoInput(index));
-
+  const allTodos = projects[index].todos;
+  renderItems(allTodos, layouts.todoItem, '.todos');
 };
 
 // handelr to create a todo
@@ -60,16 +69,7 @@ function projectHandler(event){
 dom.setEventHandler('.project-button', 'click', projectHandler);
 
 
-
-
 // load all instance projects from local storage
 storage.load();
 const allProjects = storage.getProjects();
-let layoutProjects = "";
-allProjects.forEach( (project, index) => {
-  layoutProjects += layouts.project(project.name, index);
-});
-dom.render(dom.getElement(document, '.diplay-projects'), layoutProjects );
-
-
-console.log(storage.getProjects());
+renderItems(allProjects, layouts.project, '.display-projects');
