@@ -8,14 +8,22 @@ import { layouts } from './layouts'
 // handler to display todos for a specific project
 window.displayTodos = function displayTodos(index) {
   const projects = storage.getProjects();
-  const todos = dom.getElement(document,'.todos');
   const createTodoForm = dom.getElement(document,'.create-todo-form');
   dom.render(createTodoForm, projects[index].name);
-  dom.append(createTodoForm, layouts.todoInput());
-  console.log(projects[index]);
+  dom.append(createTodoForm, layouts.todoInput(index));
+
 };
 
-// handler to create a todo
+// handelr to create a todo
+window.todoHandler = function todoHandler(index){
+  const projects = storage.getProjects();
+  const activityInput = dom.getElement(document,'.todo-name').value;
+  const activityDate = dom.getElement(document,'.todo-date').value;
+  if (validateStr(activityInput, 50, 5)){
+    projects[index].addTodo(activityInput);
+    console.log(storage.getProjects());
+  }
+}
 
 
 // handler to create a prject
@@ -39,15 +47,6 @@ function projectHandler(event){
 }
 dom.setEventHandler('.project-button', 'click', projectHandler);
 
-
-function todoHandler(event){
-  const activityInput = dom.getElement(document,'.todo-name').value;
-  const activityDate = dom.getElement(document,'.todo-date').value;
-  if (validateStr(activityInput, 50, 5)){
-    console.log(activityInput);
-  }
-}
-dom.setEventHandler('.todo-button', 'click', todoHandler);
 
 
 

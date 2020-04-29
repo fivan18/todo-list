@@ -4,12 +4,12 @@ const layouts = (function() {
     return ` <li class="each-project" onClick="displayTodos(${index})"> ${name} </li> ` ;
   }
 
-  function todoInput(){
+  function todoInput(index){
     return `
           <form >
             <input type="text" class="todo-name" name="" value="" placeholder="Add new activity">
             <input type="date" class="todo-date" name="">
-            <button class ="todo-button" type="button" onClick="" >Save Todo</button>
+            <button class ="todo-button"  type="button" onClick="todoHandler(${index})" >Save Todo</button>
           </form>
           `
   }
