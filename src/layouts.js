@@ -45,8 +45,12 @@ const layouts = (function() {
             ${getHTMLNotes(item.notes)}
           </ul>
         </div>
-        <button class="delete" onClick="delete(${index},${indexParent})"></button>
-        <button class="edit" onClick="edit(${index},${indexParent})"></button>
+        <button class="delete" onClick="deleteTodo(${index},${indexParent})">
+          delete
+        </button>
+        <button class="edit" onClick="editTodo(${index},${indexParent})">
+          edit
+        </button>
       </div>  
     `;
   }
