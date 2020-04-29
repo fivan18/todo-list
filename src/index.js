@@ -72,4 +72,4 @@ dom.setEventHandler('.project-button', 'click', projectHandler);
 // load all instance projects from local storage
 storage.load();
 const allProjects = storage.getProjects();
-renderItems(allProjects, layouts.project, '.display-projects');
+renderItems(allProjects, layouts.projectItem, '.display-projects');

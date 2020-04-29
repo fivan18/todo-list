@@ -1,6 +1,6 @@
 const layouts = (function() {
 
-  function project(item, index, indexParent = -1) {
+  function projectItem(item, index, indexParent = -1) {
     return ` <li class="each-project" onClick="displayTodos(${index})"> ${item.name} </li> ` ;
   }
 
@@ -58,7 +58,7 @@ const layouts = (function() {
 
   return {
     todoItem,
-    project,
+    projectItem,
     todoInput
   };
 
