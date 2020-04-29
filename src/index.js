@@ -10,7 +10,7 @@ window.displayTodos = function displayTodos(index) {
   const projects = storage.getProjects();
   const todos = dom.getElement(document,'.todos');
   dom.render(todos, projects[index].name);
-  dom.render(todos, layouts.todoInput());
+  dom.append(todos, layouts.todoInput());
 };
 
 

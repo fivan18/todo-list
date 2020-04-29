@@ -1,4 +1,8 @@
 const dom = (function(){
+  function append(element, content) {
+    element.insertAdjacentHTML('beforeend', content);
+  }
+
   function render(element, content) {
     element.innerHTML = content;
   }
@@ -22,6 +26,7 @@ const dom = (function(){
   }
 
   return {
+    append,
     render,
     getElement,
     addClass,
