@@ -20,7 +20,12 @@ const storage = (function() {
     });
   }
 
+  function save() {
+    local.saveArr(projects);
+  }
+
   return {
+    save,
     addProject,
     load,
     getProjects

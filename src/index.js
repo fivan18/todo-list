@@ -21,7 +21,7 @@ window.todoHandler = function todoHandler(index){
   const activityDate = dom.getElement(document,'.todo-date').value;
   if (validateStr(activityInput, 50, 5)){
     projects[index].addTodo(activityInput);
-    console.log(storage.getProjects());
+    console.log(projects);
   }
 }
 
