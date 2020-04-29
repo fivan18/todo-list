@@ -10,6 +10,7 @@ window.displayTodos = function displayTodos(index) {
   const projects = storage.getProjects();
   const todos = dom.getElement(document,'.todos');
   dom.render(todos, projects[index].name);
+  dom.render(todos, layouts.todoInput());
 };
 
 
@@ -20,6 +21,7 @@ function validateStr(str, max, min = 0) {
   }
   return false;
 }
+
 function projectHandler(event){
   const input = dom.getElement(document, '.project-input').value;
   console.log(input);
@@ -32,6 +34,18 @@ function projectHandler(event){
   }
 }
 dom.setEventHandler('.project-button', 'click', projectHandler);
+
+
+function todoHandler(event){
+  const activityInput = dom.getElement(document,'.todo-name').value;
+  const activityDate = dom.getElement(document,'.todo-date').value;
+  if (validateStr(activityInput, 50, 5)){
+    console.log(activityInput);
+  }
+}
+dom.setEventHandler('.todo-button', 'click', todoHandler);
+
+
 
 // load all instance projects from local storage
 storage.load();
