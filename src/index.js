@@ -5,6 +5,11 @@ import { dom } from './domManipulation';
 import { storage } from './activeStorage';
 import { layouts } from './layouts'
 
+function  displayAlert(content){
+  let alert = dom.getElement(document,'.alert');
+  dom.render(alert, content);
+}
+
 function validateStr(str, max, min = 0) {
   if (str.length < max && str.length > min) {
     return true;
@@ -57,6 +62,9 @@ window.todoHandler = function todoHandler(index){
     const newItem = projects[index].todos[todoIndex];
     let indexParent = index;
     dom.append(dom.getElement(document, '.todos'), layouts.todoItem(newItem, todoIndex, indexParent));
+    displayAlert("Todo was created succesfully");
+  }else{
+    displayAlert(" Title and date cannot be blank");
   }
 }
 
@@ -66,8 +74,8 @@ window.deleteTodo = function deleteTodo(index, indexParent){
   storage.save();
   const allTodos = projects[indexParent].todos;
   renderItems(allTodos, layouts.todoItem, '.todos', indexParent);
+  displayAlert("Todo was deleted succesfully");
 }
-
 
 window.showEditTodo = function showEditTodo(index, indexParent){
   let modal = dom.getElement(document, '.editTodoForm');
@@ -108,6 +116,7 @@ function saveEditTodo(index, indexParent) {
     storage.save();
     closeEditTodo();
     renderItems(projects[indexParent].todos, layouts.todoItem, '.todos', index);
+    displayAlert("Todo saved");
 
   }
 }
@@ -116,7 +125,6 @@ window.closeEditTodo = function closeEditTodo(){
   let modal = dom.getElement(document, '.editTodoForm');
   modal.style.display = 'none';
 }
-
 
 // handler to hide and unhide todos
 window.unhide = function unhide(element){
@@ -138,8 +146,9 @@ function projectHandler(event){
     let index =  storage.getProjects().length - 1;
     console.log(index);
     dom.append(dom.getElement(document, '.display-projects'),layouts.projectItem(project, index));
+    displayAlert("Project created succesfully");
   } else {
-    console.log('let user know that she/he needs to write a better name');
+    displayAlert(" Project name must contains more than 5 chars and less than 20 ");
   }
 }
 dom.setEventHandler('.project-button', 'click', projectHandler);
