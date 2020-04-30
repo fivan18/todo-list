@@ -47,11 +47,20 @@ window.todoHandler = function todoHandler(index){
     // save it as instance an local storage
     const todoIndex = projects[index].addTodo(activityInput, activityDate);
     storage.save();
-
     // show it in the user interface
     const newItem = projects[index].todos[todoIndex];
-    dom.append(dom.getElement(document, '.todos'), layouts.todoItem(newItem));
+    let indexParent = index;
+    dom.append(dom.getElement(document, '.todos'), layouts.todoItem(newItem, todoIndex, indexParent));
   }
+}
+
+window.deleteTodo = function deleteTodo(index, indexParent){
+    const projects = storage.getProjects();
+    projects[indexParent].todos.splice(index,1);
+    storage.save();
+    const allTodos = projects[indexParent].todos;
+    renderItems(allTodos, layouts.todoItem, '.todos', indexParent);
+
 }
 
 // handler to hide and unhide todos
