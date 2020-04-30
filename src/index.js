@@ -54,6 +54,17 @@ window.todoHandler = function todoHandler(index){
   }
 }
 
+// handler to hide and unhide todos
+window.unhide = function unhide(element){
+  let remainderContent = dom.getElement(element, '.remainder-content');
+  remainderContent.style.display = 'block';
+}
+
+window.hide = function hide(element){
+  let remainderContent = dom.getElement(element, '.remainder-content');
+  remainderContent.style.display = 'none';
+}
+
 // handler to create a prject
 function projectHandler(event){
   const input = dom.getElement(document, '.project-input').value;

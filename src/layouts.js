@@ -24,7 +24,7 @@ const layouts = (function() {
 
   function todoItem(item, index, indexParent){
     return `
-    <div class="todo-item">
+    <div class="todo-item" onmouseover="unhide(this)" onmouseout="hide(this)">
       <div class="main-content-todo">
         <form action="#">
           <label>
@@ -36,7 +36,7 @@ const layouts = (function() {
           ${item.priority}
         </div>
       </div>
-      <div class="remainder-content">
+      <div class="remainder-content" style="display: none;">
         <p>${item.description}</p>
         <div>
           <time datetime="${item.dueDate}">${item.dueDate}</time>
