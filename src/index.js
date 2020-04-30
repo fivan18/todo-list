@@ -5,9 +5,15 @@ import { dom } from './domManipulation';
 import { storage } from './activeStorage';
 import { layouts } from './layouts'
 
-function  displayAlert(content){
+function  displayAlert(content,status){
   let alert = dom.getElement(document,'.alert');
-  dom.render(alert, content);
+  if(status=="succes"){
+    alert.style.color = "green"
+    dom.render(alert, content);
+  } else {
+    alert.style.color = "red"
+    dom.render(alert, content);
+  }
 }
 
 function validateStr(str, max, min = 0) {
@@ -62,9 +68,9 @@ window.todoHandler = function todoHandler(index){
     const newItem = projects[index].todos[todoIndex];
     let indexParent = index;
     dom.append(dom.getElement(document, '.todos'), layouts.todoItem(newItem, todoIndex, indexParent));
-    displayAlert("Todo was created succesfully");
+    displayAlert("Todo was created succesfully", "succes");
   }else{
-    displayAlert(" Title and date cannot be blank");
+    displayAlert(" Title and date cannot be blank", "error");
   }
 }
 
@@ -74,7 +80,7 @@ window.deleteTodo = function deleteTodo(index, indexParent){
   storage.save();
   const allTodos = projects[indexParent].todos;
   renderItems(allTodos, layouts.todoItem, '.todos', indexParent);
-  displayAlert("Todo was deleted succesfully");
+  displayAlert("Todo was deleted succesfully", "succes");
 }
 
 window.showEditTodo = function showEditTodo(index, indexParent){
@@ -116,7 +122,7 @@ function saveEditTodo(index, indexParent) {
     storage.save();
     closeEditTodo();
     renderItems(projects[indexParent].todos, layouts.todoItem, '.todos', index);
-    displayAlert("Todo saved");
+    displayAlert("Todo saved", "succes");
 
   }
 }
@@ -145,9 +151,9 @@ function projectHandler(event){
     storage.addProject(project);
     let index =  storage.getProjects().length - 1;
     dom.append(dom.getElement(document, '.display-projects'),layouts.projectItem(project, index));
-    displayAlert("Project created succesfully");
+    displayAlert("Project created succesfully", "succes");
   } else {
-    displayAlert(" Project name must contains more than 5 chars and less than 20 ");
+    displayAlert(" Project name must contains more than 5 chars and less than 20 ", "red");
   }
 }
 dom.setEventHandler('.project-button', 'click', projectHandler);
