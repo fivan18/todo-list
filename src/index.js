@@ -66,6 +66,14 @@ window.deleteTodo = function deleteTodo(index, indexParent){
 window.showEditTodo = function showEditTodo(index, indexParent){
   let modal = dom.getElement(document, '.editTodoForm');
   modal.style.display = 'block';
+  let form = dom.getElement(modal, "#edit-form")
+  const projects = storage.getProjects();
+
+  let {title, description, dueDate, priority} = projects[indexParent].todos[index];
+  form.editTitle.value = title;
+  form.editDescription.value = description;
+  form.editDate.value = dueDate;
+  form.editPriority.value = priority;
 
   let btnSave = dom.getElement(modal, '.save-todo');
   btnSave.addEventListener('click', () => {
@@ -74,8 +82,12 @@ window.showEditTodo = function showEditTodo(index, indexParent){
 }
 
 function saveEditTodo(index, indexParent) {
-  console.log('index', index);
-  console.log('indexParent', indexParent)
+  let form = dom.getElement(document, "#edit-form")
+  form.editTitle;
+  form.editDescription;
+  form.editDate;
+  form.editPriority;
+  console.log(form);
 }
 
 window.closeEditTodo = function closeEditTodo(){
