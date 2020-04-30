@@ -24,18 +24,19 @@ const layouts = (function() {
 
   function todoItem(item, index, indexParent){
     return `
-      <div class="todo-item">
-        <div class="main-content-todo">
-          <form action="#">
-            <label>
-              <input type="checkbox" class="" value="first_checkbox" ${item.checked ? checked : ''}>
-              ${item.title}
-            </label>
-          </form>
-          <div class="priority-todo">
-            ${item.priority}
-          </div>
+    <div class="todo-item">
+      <div class="main-content-todo">
+        <form action="#">
+          <label>
+            <input type="checkbox" class="" value="first_checkbox" ${item.checked ? checked : ''}>
+            ${item.title}
+          </label>
+        </form>
+        <div class="priority-todo">
+          ${item.priority}
         </div>
+      </div>
+      <div class="remainder-content">
         <p>${item.description}</p>
         <div>
           <time datetime="${item.dueDate}">${item.dueDate}</time>
@@ -51,7 +52,8 @@ const layouts = (function() {
         <button class="edit" onClick="editTodo(${index},${indexParent})">
           edit
         </button>
-      </div>  
+      </div>
+    </div>
     `;
   }
 
