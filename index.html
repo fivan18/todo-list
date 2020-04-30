@@ -25,8 +25,12 @@
   </div>
 
   <div class="main">
-    <h3>Project todo's</h3>
 
+    <div class="alert">
+
+    </div>
+
+    <h3>Project todo's</h3>
     <div class="create-todo-form">
 
     </div>
@@ -40,9 +44,9 @@
           <textarea id="editDescription" name="name" rows="8" cols="80" placeholder="New Description"></textarea>
           <label >Select new Date</label> <input id="editDate" type="date" class="todo-date" name="">
           <select id="editPriority">
-            <option value="0">High</option>
+            <option value="2">High</option>
             <option value="1">Medium</option>
-            <option value="2">Low</option>
+            <option value="0">Low</option>
           </select>
           <button class="save-todo" type="button"> Save Todo</button>
           <button type="button" onClick="closeEditTodo()"> Cancel</button>
