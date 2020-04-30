@@ -83,11 +83,15 @@ window.showEditTodo = function showEditTodo(index, indexParent){
 
 function saveEditTodo(index, indexParent) {
   let form = dom.getElement(document, "#edit-form")
-  form.editTitle;
-  form.editDescription;
-  form.editDate;
-  form.editPriority;
-  console.log(form);
+  const projects = storage.getProjects();
+  let currentTodo = projects[indexParent].todos[index];
+  currentTodo.title = form.editTitle.value;
+  currentTodo.description = form.editDescription.value;
+  currentTodo.dueDate = form.editDate.value;
+  currentTodo.priority = form.editPriority.value;
+  storage.save();
+  closeEditTodo();
+
 }
 
 window.closeEditTodo = function closeEditTodo(){
