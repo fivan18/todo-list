@@ -80,7 +80,7 @@ window.deleteTodo = function deleteTodo(index, indexParent){
   storage.save();
   const allTodos = projects[indexParent].todos;
   renderItems(allTodos, layouts.todoItem, '.todos', indexParent);
-  displayAlert("Todo was deleted succesfully", "succes");
+  displayAlert("Todo was deleted succesfully", "red");
 }
 
 window.showEditTodo = function showEditTodo(index, indexParent){
