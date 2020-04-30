@@ -32,6 +32,24 @@
     </div>
     <div class="todos">
     </div>
+
+    <div class="editTodoForm">
+      <div class="editTodoForm-content">
+        <form >
+          <input type="text" placeholder="New title">
+          <textarea name="name" rows="8" cols="80" placeholder="New Description"></textarea>
+          <label>Select new Date</label> <input type="date" class="todo-date" name="">
+          <select>
+            <option value="2">High</option>
+            <option value="1">Medium</option>
+            <option value="0">Low</option>
+          </select>
+          <button type="button" onClick=""> Save Todo</button>
+          <button type="button" onClick="closeEditTodo()"> Cancel</button>
+        </form>
+      </div>
+
+    </div>
   </div>
 
   <script src="./main.js"></script>
