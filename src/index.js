@@ -85,13 +85,25 @@ function saveEditTodo(index, indexParent) {
   let form = dom.getElement(document, "#edit-form")
   const projects = storage.getProjects();
   let currentTodo = projects[indexParent].todos[index];
-  currentTodo.title = form.editTitle.value;
-  currentTodo.description = form.editDescription.value;
-  currentTodo.dueDate = form.editDate.value;
-  currentTodo.priority = form.editPriority.value;
-  storage.save();
-  closeEditTodo();
+  const { editTitle: {value: title},
+          editDescription: {value: description},
+          editDate: {value: dueDate},
+          editPriority: {value: priority} } = form;
+  if (validateStr(title, 50, 5) &&
+      validateStr(dueDate, 11, 0) &&
+      validateDateFormat(dueDate) &&
+      validateStr(description, 120, -1) &&
+      [0, 1, 2].includes(parseInt(priority))
+  ){
+    currentTodo.title = title;
+    currentTodo.description = description;
+    currentTodo.dueDate = dueDate;
+    currentTodo.priority = parseInt(priority);
+    storage.save();
+    closeEditTodo();
+    renderItems(projects[indexParent].todos, layouts.todoItem, '.todos', index);
 
+  }
 }
 
 window.closeEditTodo = function closeEditTodo(){
