@@ -14,6 +14,7 @@ const layouts = (function() {
           `
   }
 
+
   function getHTMLNotes(notes) {
     let htmlNotes = '';
     notes.forEach(note => {
@@ -49,11 +50,12 @@ const layouts = (function() {
         <button class="delete" onClick="deleteTodo(${index},${indexParent})">
           delete
         </button>
-        <button class="edit" onClick="editTodo(${index},${indexParent})">
+        <button class="edit" onClick="showEditTodo(${index},${indexParent})">
           edit
         </button>
       </div>
     </div>
+
     `;
   }
 

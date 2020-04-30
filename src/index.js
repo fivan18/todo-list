@@ -55,13 +55,25 @@ window.todoHandler = function todoHandler(index){
 }
 
 window.deleteTodo = function deleteTodo(index, indexParent){
-    const projects = storage.getProjects();
-    projects[indexParent].todos.splice(index,1);
-    storage.save();
-    const allTodos = projects[indexParent].todos;
-    renderItems(allTodos, layouts.todoItem, '.todos', indexParent);
-
+  const projects = storage.getProjects();
+  projects[indexParent].todos.splice(index,1);
+  storage.save();
+  const allTodos = projects[indexParent].todos;
+  renderItems(allTodos, layouts.todoItem, '.todos', indexParent);
 }
+
+
+window.showEditTodo = function showEditTodo(index, indexParent){
+  let modal = dom.getElement(document, '.editTodoForm');
+  modal.style.display = 'block';
+  
+}
+
+window.closeEditTodo = function closeEditTodo(){
+  let modal = dom.getElement(document, '.editTodoForm');
+  modal.style.display = 'none';
+}
+
 
 // handler to hide and unhide todos
 window.unhide = function unhide(element){
