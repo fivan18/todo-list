@@ -4,8 +4,11 @@
 
 .main {
   margin-left: 25%;
-  font-size: 28px;
   padding: 0px 10px;
+}
+
+.todo-input {
+  margin-bottom: 25px;
 }
 
 .todo-item {

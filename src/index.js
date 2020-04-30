@@ -39,7 +39,7 @@ window.check = function check(index , indexParent, element){
 window.displayTodos = function displayTodos(index) {
   const projects = storage.getProjects();
   const createTodoForm = dom.getElement(document,'.create-todo-form');
-  dom.render(createTodoForm, projects[index].name);
+  dom.render(createTodoForm, `<h3 class="name-of-the-project">${projects[index].name} todo's:</h3>`);
   dom.append(createTodoForm, layouts.todoInput(index));
   const allTodos = projects[index].todos;
   renderItems(allTodos, layouts.todoItem, '.todos', index);
@@ -144,7 +144,6 @@ function projectHandler(event){
     const project = projectFactory(input);
     storage.addProject(project);
     let index =  storage.getProjects().length - 1;
-    console.log(index);
     dom.append(dom.getElement(document, '.display-projects'),layouts.projectItem(project, index));
     displayAlert("Project created succesfully");
   } else {

@@ -6,11 +6,15 @@ const layouts = (function() {
 
   function todoInput(index){
     return `
+        <div class="todo-input">
+          <br>
+          <label>Create new Todo: </lable>
           <form >
             <input type="text" class="todo-name" name="" value="" placeholder="Add new activity">
             <input type="date" class="todo-date" name="">
             <button class ="todo-button" type="button" onClick="todoHandler(${index})" >Save Todo</button>
           </form>
+        </div>
           `
   }
 
