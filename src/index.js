@@ -57,11 +57,12 @@ window.todoHandler = function todoHandler(index){
 // handler to create a prject
 function projectHandler(event){
   const input = dom.getElement(document, '.project-input').value;
-  console.log(input);
   if (validateStr(input, 20, 5)) {
     const project = projectFactory(input);
     storage.addProject(project);
-    console.log(project);
+    let index =  storage.getProjects().length - 1;
+    console.log(index);
+    dom.append(dom.getElement(document, '.display-projects'),layouts.projectItem(project, index));
   } else {
     console.log('let user know that she/he needs to write a better name');
   }
