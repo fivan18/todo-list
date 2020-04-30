@@ -66,7 +66,16 @@ window.deleteTodo = function deleteTodo(index, indexParent){
 window.showEditTodo = function showEditTodo(index, indexParent){
   let modal = dom.getElement(document, '.editTodoForm');
   modal.style.display = 'block';
-  
+
+  let btnSave = dom.getElement(modal, '.save-todo');
+  btnSave.addEventListener('click', () => {
+    saveEditTodo(index, indexParent);
+  });
+}
+
+function saveEditTodo(index, indexParent) {
+  console.log('index', index);
+  console.log('indexParent', indexParent)
 }
 
 window.closeEditTodo = function closeEditTodo(){
