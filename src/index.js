@@ -24,6 +24,12 @@ function renderItems(items, callback, container, indexParent = -1){
   dom.render(dom.getElement(document, container), layout);
 }
 
+window.check = function check(index , indexParent, element){
+  const projects = storage.getProjects();
+  projects[indexParent].todos[index].checked = element.checked;
+  storage.save();
+}
+
 // handler to display todos for a specific project
 window.displayTodos = function displayTodos(index) {
   const projects = storage.getProjects();

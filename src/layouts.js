@@ -29,7 +29,7 @@ const layouts = (function() {
       <div class="main-content-todo">
         <form action="#">
           <label>
-            <input type="checkbox" class="" value="first_checkbox" ${item.checked ? checked : ''}>
+            <input type="checkbox" onclick="check(${index},${indexParent},this)" value="first_checkbox" ${item.checked ? 'checked' : ''}>
             ${item.title}
           </label>
         </form>
