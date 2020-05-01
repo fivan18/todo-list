@@ -94,7 +94,8 @@ window.closeEditTodo = function closeEditTodo(){
   modal.style.display = 'none';
 }
 
-function saveEditTodo(index, indexParent) {
+window.saveEditTodo = function saveEditTodo(index, indexParent) {
+  console.log(index,indexParent);
   let form = dom.getElement(document, "#edit-form")
   const projects = storage.getProjects();
   let currentTodo = projects[indexParent].todos[index];
@@ -140,10 +141,7 @@ window.showEditTodo = function showEditTodo(index, indexParent){
   form.editDate.value = dueDate;
   form.editPriority.value = priority;
 
-  let btnSave = dom.getElement(modal, '.save-todo');
-  btnSave.addEventListener('click', () => {
-    saveEditTodo(index, indexParent);
-  });
+  dom.render(dom.getElement(document, '.save-todo'), layouts.todoSaveBtn(index, indexParent));
 }
 
 // hide and unhide todos when the mouse is over

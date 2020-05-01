@@ -6,25 +6,21 @@ const layouts = (function() {
 
   function todoInput(index){
     return `
-        <div class="todo-input">
-          <br>
-          <label>Create new Todo: </lable>
-          <form >
-            <input type="text" class="todo-name" name="" value="" placeholder="Add new activity">
-            <input type="date" class="todo-date" name="">
-            <button class ="todo-button" type="button" onClick="todoHandler(${index})" >Save Todo</button>
-          </form>
-        </div>
-          `
+      <div class="todo-input">
+        <br>
+        <label>Create new Todo: </lable>
+        <form >
+          <input type="text" class="todo-name" name="" value="" placeholder="Add new activity">
+          <input type="date" class="todo-date" name="">
+          <button class ="todo-button" type="button" onClick="todoHandler(${index})" >Save Todo</button>
+        </form>
+      </div>
+    `;
   }
 
 
-  function getHTMLNotes(notes) {
-    let htmlNotes = '';
-    notes.forEach(note => {
-      htmlNotes += `<li>${note}</li>`;
-    });
-    return htmlNotes;
+  function todoSaveBtn(index, indexParent) {
+    return `<button onclick="saveEditTodo(${index},${indexParent})" type="button"> Save Todo</button>`;
   }
 
   function todoItem(item, index, indexParent){
@@ -46,11 +42,6 @@ const layouts = (function() {
         <div>
           <time datetime="${item.dueDate}">${item.dueDate}</time>
         </div>
-        <div>
-          <ul>
-            ${getHTMLNotes(item.notes)}
-          </ul>
-        </div>
         <button class="delete" onClick="deleteTodo(${index},${indexParent})">
           delete
         </button>
@@ -67,7 +58,8 @@ const layouts = (function() {
   return {
     todoItem,
     projectItem,
-    todoInput
+    todoInput,
+    todoSaveBtn
   };
 
 })();
