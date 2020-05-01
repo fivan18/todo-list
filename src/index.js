@@ -184,8 +184,7 @@ window.displayTodos = function displayTodos(index) {
   const createTodoForm = dom.getElement(document,'.create-todo-form');
   dom.render(createTodoForm, `<h3 class="name-of-the-project">${projects[index].name} todo's:</h3>`);
   dom.append(createTodoForm, layouts.todoInput(index));
-  const allTodos = projects[index].todos;
-  renderItems(allTodos, layouts.todoItem, '.todos', index);
+  renderItems(projects[index].todos, layouts.todoItem, '.todos', index);
 };
 
 /* ************************* Subscribe methods ************************* */
