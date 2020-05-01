@@ -5,6 +5,7 @@ import { dom } from './domManipulation';
 import { storage } from './activeStorage';
 import { layouts } from './layouts'
 
+/* ************************* Helper methods ************************* */
 function  displayAlert(content,status, place){
   let alert = dom.getElement(document, place);
   if(status=="succes"){
@@ -35,23 +36,8 @@ function renderItems(items, callback, container, indexParent = -1){
   dom.render(dom.getElement(document, container), layout);
 }
 
-window.check = function check(index , indexParent, element){
-  const projects = storage.getProjects();
-  projects[indexParent].todos[index].checked = element.checked;
-  storage.save();
-}
-
-// handler to display todos for a specific project
-window.displayTodos = function displayTodos(index) {
-  const projects = storage.getProjects();
-  const createTodoForm = dom.getElement(document,'.create-todo-form');
-  dom.render(createTodoForm, `<h3 class="name-of-the-project">${projects[index].name} todo's:</h3>`);
-  dom.append(createTodoForm, layouts.todoInput(index));
-  const allTodos = projects[index].todos;
-  renderItems(allTodos, layouts.todoItem, '.todos', index);
-};
-
-// handelr to create a todo
+/* ************************* Todo's handlers ************************* */
+// create a todo
 window.todoHandler = function todoHandler(index){
   const projects = storage.getProjects();
   const activityInput = dom.getElement(document,'.todo-name').value;
@@ -74,6 +60,14 @@ window.todoHandler = function todoHandler(index){
   }
 }
 
+// check a todo
+window.check = function check(index , indexParent, element){
+  const projects = storage.getProjects();
+  projects[indexParent].todos[index].checked = element.checked;
+  storage.save();
+}
+
+// delete a todo
 window.deleteTodo = function deleteTodo(index, indexParent){
   const projects = storage.getProjects();
   projects[indexParent].todos.splice(index,1);
@@ -83,24 +77,7 @@ window.deleteTodo = function deleteTodo(index, indexParent){
   displayAlert("Todo was deleted succesfully", "red", ".global-alert");
 }
 
-window.showEditTodo = function showEditTodo(index, indexParent){
-  let modal = dom.getElement(document, '.editTodoForm');
-  modal.style.display = 'block';
-  let form = dom.getElement(modal, "#edit-form")
-  const projects = storage.getProjects();
-
-  let {title, description, dueDate, priority} = projects[indexParent].todos[index];
-  form.editTitle.value = title;
-  form.editDescription.value = description;
-  form.editDate.value = dueDate;
-  form.editPriority.value = priority;
-
-  let btnSave = dom.getElement(modal, '.save-todo');
-  btnSave.addEventListener('click', () => {
-    saveEditTodo(index, indexParent);
-  });
-}
-
+// edit a todo
 function saveEditTodo(index, indexParent) {
   let form = dom.getElement(document, "#edit-form")
   const projects = storage.getProjects();
@@ -129,12 +106,30 @@ function saveEditTodo(index, indexParent) {
   }
 }
 
+window.showEditTodo = function showEditTodo(index, indexParent){
+  let modal = dom.getElement(document, '.editTodoForm');
+  modal.style.display = 'block';
+  let form = dom.getElement(modal, "#edit-form")
+  const projects = storage.getProjects();
+
+  let {title, description, dueDate, priority} = projects[indexParent].todos[index];
+  form.editTitle.value = title;
+  form.editDescription.value = description;
+  form.editDate.value = dueDate;
+  form.editPriority.value = priority;
+
+  let btnSave = dom.getElement(modal, '.save-todo');
+  btnSave.addEventListener('click', () => {
+    saveEditTodo(index, indexParent);
+  });
+}
+
 window.closeEditTodo = function closeEditTodo(){
   let modal = dom.getElement(document, '.editTodoForm');
   modal.style.display = 'none';
 }
 
-// handler to hide and unhide todos
+// hide and unhide todos when the mouse is over
 window.unhide = function unhide(element){
   let remainderContent = dom.getElement(element, '.remainder-content');
   remainderContent.style.display = 'block';
@@ -145,6 +140,7 @@ window.hide = function hide(element){
   remainderContent.style.display = 'none';
 }
 
+/* ************************* Project's handlers ************************* */
 // handler to create a prject
 function projectHandler(event){
   const input = dom.getElement(document, '.project-input').value;
@@ -160,8 +156,18 @@ function projectHandler(event){
 }
 dom.setEventHandler('.project-button', 'click', projectHandler);
 
+// handler to display todos for a specific project
+window.displayTodos = function displayTodos(index) {
+  const projects = storage.getProjects();
+  const createTodoForm = dom.getElement(document,'.create-todo-form');
+  dom.render(createTodoForm, `<h3 class="name-of-the-project">${projects[index].name} todo's:</h3>`);
+  dom.append(createTodoForm, layouts.todoInput(index));
+  const allTodos = projects[index].todos;
+  renderItems(allTodos, layouts.todoItem, '.todos', index);
+};
 
-// load all instance projects from local storage
+
+/* ************************* Initialize App ************************* */
 storage.load();
 const allProjects = storage.getProjects();
 renderItems(allProjects, layouts.projectItem, '.display-projects');
