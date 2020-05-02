@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
 
   This is a Publish Subscribe Implementation made by Addy Osmani: https://twitter.com/addyosmani
