@@ -1,4 +1,5 @@
 /* eslint no-unused-vars: ["error", { "argsIgnorePattern": "^_" }] */
+/* eslint import/no-unresolved: [2, { ignore: ['^date-fns$'] }] */
 
 import { formatRelative } from 'date-fns';
 
