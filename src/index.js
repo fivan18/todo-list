@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: ["error", { "argsIgnorePattern": "^_" }] */
+
 import './assets/css/style.css';
 import './assets/css/sidebar.css';
 import { projectFactory } from './factories';
@@ -9,7 +11,7 @@ import pubsub from './pubsub';
 /* ************************* Helper methods ************************* */
 function displayAlert(content, status, place) {
   const alert = dom.getElement(document, place);
-  if (status == 'succes') {
+  if (status === 'succes') {
     alert.style.color = 'green';
     dom.render(alert, content);
   } else {
@@ -97,10 +99,10 @@ window.closeEditTodo = function closeEditTodo() {
   modal.style.display = 'none';
 };
 
-document.onkeydown = function (evt) {
+document.onkeydown = (evt) => {
   evt = evt || window.event;
-  if (evt.keyCode == 27) {
-    closeEditTodo();
+  if (evt.keyCode === 27) {
+    window.closeEditTodo();
   }
 };
 
@@ -118,14 +120,14 @@ window.saveEditTodo = function saveEditTodo(index, indexParent) {
       && validateStr(dueDate, 11, 0)
       && validateDateFormat(dueDate)
       && validateStr(description, 120, -1)
-      && [0, 1, 2].includes(parseInt(priority))
+      && [0, 1, 2].includes(parseInt(priority, 10))
   ) {
     // modify the data model
     currentTodo.title = title;
     currentTodo.description = description;
     currentTodo.dueDate = dueDate;
-    currentTodo.priority = parseInt(priority);
-    closeEditTodo();
+    currentTodo.priority = parseInt(priority, 10);
+    window.closeEditTodo();
     // publish a todo list has been modified
     pubsub.publish('modify/todoOrProjectList', {
       append: false,
@@ -194,7 +196,7 @@ window.projectHandler = function projectHandler() {
     displayAlert(' Project name must contains more than 5 chars and less than 20 ', 'red', '.global-alert');
   }
 };
-dom.setEventHandler('.project-button', 'click', projectHandler);
+dom.setEventHandler('.project-button', 'click', window.projectHandler);
 
 // handler to display todos for a specific project
 window.displayTodos = function displayTodos(index) {
@@ -207,21 +209,22 @@ window.displayTodos = function displayTodos(index) {
 
 /* ************************* Subscribe methods ************************* */
 // subscribers
-const saver = function saver(topic, data) {
+const saver = function saver(_topic, _data) {
   storage.save();
 };
-const todosDisplyer = function todosDisplayer(topic, data) {
+const todosDisplyer = function todosDisplayer(_topic, data) {
   if (data.append) {
-    dom.append(dom.getElement(document, data.selectorContainer), data.layout(data.item, data.index, data.indexParent));
+    dom.append(dom.getElement(document, data.selectorContainer),
+      data.layout(data.item, data.index, data.indexParent));
   } else {
     renderItems(data.items, data.layout, data.selectorContainer, data.indexParent);
   }
 };
-const alertDisplayer = function alertDisplayer(topic, data) {
+const alertDisplayer = function alertDisplayer(_topic, data) {
   displayAlert(...data.alert);
 };
 
-const inputCleaner = function inputCleaner(topic, data) {
+const inputCleaner = function inputCleaner(_topic, data) {
   data.selectors.forEach((selector) => {
     dom.getElement(document, selector).value = '';
   });
