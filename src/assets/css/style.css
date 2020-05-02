@@ -42,3 +42,31 @@
   border: 1px solid #888;
   width: 80%;
 }
+
+.new-todos-form {
+  display: flex;
+}
+
+.new-todos-form label {
+  margin-right: 20px;
+}
+
+.new-todos-form button {
+  height: 70%;
+  align-self: flex-end;
+}
+
+.date-time {
+  color: #70757a;
+  font-size: 15px;
+  margin-left: 25px;
+}
+
+.buttons-edit-todo {
+  display: flex;
+  margin-top: 20px;
+}
+
+.buttons-edit-todo button {
+  margin-right: 10px;
+}

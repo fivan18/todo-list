@@ -1,3 +1,5 @@
+import { formatRelative } from 'date-fns';
+
 const layouts = (function() {
 
   function projectItem(item, index, indexParent = -1) {
@@ -8,10 +10,13 @@ const layouts = (function() {
     return `
       <div class="todo-input">
         <br>
-        <label>Create new Todo: </lable>
-        <form action="#">
-          <input type="text" class="todo-name" name="" placeholder="Add new activity">
-          <input type="date" class="todo-date" name="">
+        <form class="new-todos-form" action="#">
+          <label>Name: <br>
+              <input type="text" class="todo-name" name="" placeholder="Add New Todo">
+          </label>
+          <label>Due Date: <br>
+            <input type="date" class="todo-date" name="">
+          </label>
           <button class ="todo-button" type="submit" onClick="todoHandler(${index})" name="button">Save Todo</button>
         </form>
       </div>
@@ -24,6 +29,13 @@ const layouts = (function() {
   }
 
   function todoItem(item, index, indexParent){
+    const priority = {
+      0: 'Low',
+      1: 'Medium',
+      2: 'High'
+    };
+    const dateDistance = formatRelative(new Date(item.dueDate), new Date());
+
     return `
     <div class="todo-item" onmouseover="unhide(this)" onmouseout="hide(this)">
       <div class="main-content-todo">
@@ -34,14 +46,14 @@ const layouts = (function() {
           </label>
         </form>
         <div class="priority-todo">
-          ${item.priority}
+          ${priority[item.priority]}
         </div>
       </div>
       <div class="remainder-content" style="display: none;">
-        <p>${item.description}</p>
         <div>
-          <time datetime="${item.dueDate}">${item.dueDate}</time>
+          <time class="date-time" datetime="${item.dueDate}">${dateDistance}</time>
         </div>
+        <p>${item.description}</p>
         <button class="delete" onClick="deleteTodo(${index},${indexParent})">
           delete
         </button>

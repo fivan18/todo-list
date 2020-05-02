@@ -34,3 +34,11 @@
   cursor: pointer;
   text-transform:capitalize;
 }
+
+.each-project:hover {
+  background-color: blanchedalmond;
+}
+
+.display-projects {
+  padding-left: 0px;
+}
