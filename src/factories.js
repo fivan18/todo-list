@@ -1,3 +1,16 @@
+const todoFactory = (title, dueDate, description = '', priority = 0) => {
+  const checked = false;
+  const notes = [];
+  return {
+    title,
+    description,
+    dueDate,
+    priority,
+    notes,
+    checked,
+  };
+};
+
 const projectFactory = (name) => {
   const todos = [];
 
@@ -12,17 +25,4 @@ const projectFactory = (name) => {
   };
 };
 
-const todoFactory = (title, dueDate, description = '', priority = 0) => {
-  const checked = false;
-  const notes = [];
-  return {
-    title,
-    description,
-    dueDate,
-    priority,
-    notes,
-    checked,
-  };
-};
-
-export { projectFactory };
+export { projectFactory, todoFactory };
