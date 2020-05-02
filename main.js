@@ -2934,7 +2934,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var date
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconst local = (function () {\n  const storageName = 'projects';\n  function saveArr(arr) {\n    window.localStorage.setItem(storageName, JSON.stringify(arr));\n  }\n\n  function retrieveArr() {\n    let arr = [];\n    if (window.localStorage.getItem(storageName) !== null) {\n      arr = JSON.parse(window.localStorage.getItem(storageName));\n    }\n    return arr;\n  }\n\n  return {\n    retrieveArr,\n    saveArr,\n  };\n}());\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (local);\n\n\n//# sourceURL=webpack:///./src/localStorage.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst local = (() => {\n  const storageName = 'projects';\n  function saveArr(arr) {\n    window.localStorage.setItem(storageName, JSON.stringify(arr));\n  }\n\n  function retrieveArr() {\n    let arr = [];\n    if (window.localStorage.getItem(storageName) !== null) {\n      arr = JSON.parse(window.localStorage.getItem(storageName));\n    }\n    return arr;\n  }\n\n  return {\n    retrieveArr,\n    saveArr,\n  };\n})();\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (local);\n\n\n//# sourceURL=webpack:///./src/localStorage.js?");
 
 /***/ }),
 
