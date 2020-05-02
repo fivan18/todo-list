@@ -1,4 +1,4 @@
-const local = (function () {
+const local = (() => {
   const storageName = 'projects';
   function saveArr(arr) {
     window.localStorage.setItem(storageName, JSON.stringify(arr));
@@ -16,6 +16,6 @@ const local = (function () {
     retrieveArr,
     saveArr,
   };
-}());
+})();
 
 export default local;
