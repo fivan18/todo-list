@@ -1,7 +1,9 @@
+/* eslint no-unused-vars: ["error", { "argsIgnorePattern": "^_" }] */
+
 import { formatRelative } from 'date-fns';
 
-const layouts = (function () {
-  function projectItem(item, index, indexParent = -1) {
+const layouts = (() => {
+  function projectItem(item, index, _indexParent = -1) {
     return ` <li class="each-project" onClick="displayTodos(${index})"> ${item.name} </li> `;
   }
 
@@ -71,6 +73,6 @@ const layouts = (function () {
     todoInput,
     todoSaveBtn,
   };
-}());
+})();
 
-export { layouts };
+export default layouts;

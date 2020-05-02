@@ -5,7 +5,7 @@ import './assets/css/sidebar.css';
 import { projectFactory } from './factories';
 import dom from './domManipulation';
 import storage from './activeStorage';
-import { layouts } from './layouts';
+import layouts from './layouts';
 import pubsub from './pubsub';
 
 /* ************************* Helper methods ************************* */
