@@ -94,6 +94,13 @@ window.closeEditTodo = function closeEditTodo(){
   modal.style.display = 'none';
 }
 
+document.onkeydown = function(evt) {
+  evt = evt || window.event;
+  if (evt.keyCode == 27) {
+    closeEditTodo();
+  }
+};
+
 window.saveEditTodo = function saveEditTodo(index, indexParent) {
   console.log(index,indexParent);
   let form = dom.getElement(document, "#edit-form")
@@ -130,11 +137,13 @@ window.saveEditTodo = function saveEditTodo(index, indexParent) {
 }
 
 window.showEditTodo = function showEditTodo(index, indexParent){
+  dom.render(dom.getElement(document,'.error-todo-form'), '');
+
   let modal = dom.getElement(document, '.editTodoForm');
   modal.style.display = 'block';
+
   let form = dom.getElement(modal, "#edit-form")
   const projects = storage.getProjects();
-
   let {title, description, dueDate, priority} = projects[indexParent].todos[index];
   form.editTitle.value = title;
   form.editDescription.value = description;
@@ -157,7 +166,7 @@ window.hide = function hide(element){
 
 /* ************************* Project's handlers ************************* */
 // handler to create a prject
-function projectHandler(){
+window.projectHandler = function projectHandler(){
   const input = dom.getElement(document, '.project-input').value;
   if (validateStr(input, 20, 5)) {
     // modify data model

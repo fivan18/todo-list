@@ -9,10 +9,10 @@ const layouts = (function() {
       <div class="todo-input">
         <br>
         <label>Create new Todo: </lable>
-        <form >
-          <input type="text" class="todo-name" name="" value="" placeholder="Add new activity">
+        <form action="#">
+          <input type="text" class="todo-name" name="" placeholder="Add new activity">
           <input type="date" class="todo-date" name="">
-          <button class ="todo-button" type="button" onClick="todoHandler(${index})" >Save Todo</button>
+          <button class ="todo-button" type="submit" onClick="todoHandler(${index})" name="button">Save Todo</button>
         </form>
       </div>
     `;
@@ -20,7 +20,7 @@ const layouts = (function() {
 
 
   function todoSaveBtn(index, indexParent) {
-    return `<button onclick="saveEditTodo(${index},${indexParent})" type="button"> Save Todo</button>`;
+    return `<button onclick="saveEditTodo(${index},${indexParent})" type="submit" name="button"> Save Todo</button>`;
   }
 
   function todoItem(item, index, indexParent){
@@ -50,7 +50,6 @@ const layouts = (function() {
         </button>
       </div>
     </div>
-
     `;
   }
 
