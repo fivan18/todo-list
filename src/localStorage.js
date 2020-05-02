@@ -1,5 +1,3 @@
-import { projectFactory } from './todo';
-
 const local = (function () {
   const storageName = 'projects';
   function saveArr(arr) {

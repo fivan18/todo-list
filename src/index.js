@@ -1,6 +1,6 @@
 import './assets/css/style.css';
 import './assets/css/sidebar.css';
-import { projectFactory } from './todo';
+import { projectFactory } from './factories';
 import { dom } from './domManipulation';
 import { storage } from './activeStorage';
 import { layouts } from './layouts';
@@ -105,7 +105,6 @@ document.onkeydown = function (evt) {
 };
 
 window.saveEditTodo = function saveEditTodo(index, indexParent) {
-  console.log(index, indexParent);
   const form = dom.getElement(document, '#edit-form');
   const projects = storage.getProjects();
   const currentTodo = projects[indexParent].todos[index];

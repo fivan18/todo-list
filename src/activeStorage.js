@@ -1,5 +1,5 @@
 import local from './localStorage';
-import { projectFactory } from './todo';
+import { projectFactory } from './factories';
 
 const storage = (function () {
   let projects = [];
