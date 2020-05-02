@@ -51,7 +51,7 @@ window.todoHandler = function todoHandler(indexParent){
     // modify the data model
     const index = projects[indexParent].addTodo(activityInput, activityDate);
     // publish a todo list has been modified
-    pubsub.publish( "modify/todoOrProjectList", {
+    pubsub.publish("modify/todoOrProjectList", {
       append: true,
       item: projects[indexParent].todos[index],
       index,
@@ -59,6 +59,9 @@ window.todoHandler = function todoHandler(indexParent){
       alert: ["Todo was created succesfully", "succes",".global-alert"],
       selectorContainer: '.todos',
       layout: layouts.todoItem
+    });
+    pubsub.publish("create/todoOrProject", {
+      selectors: ['.todo-name','.todo-date']
     });
   }else{
     displayAlert(" Title and date cannot be blank", "error",".global-alert");
@@ -165,7 +168,7 @@ window.hide = function hide(element){
 }
 
 /* ************************* Project's handlers ************************* */
-// handler to create a prject
+// handler to create a project
 window.projectHandler = function projectHandler(){
   const input = dom.getElement(document, '.project-input').value;
   if (validateStr(input, 20, 5)) {
@@ -180,6 +183,9 @@ window.projectHandler = function projectHandler(){
       alert: ["Project created succesfully", "succes",".global-alert"],
       selectorContainer: '.display-projects',
       layout: layouts.projectItem
+    });
+    pubsub.publish("create/todoOrProject", {
+      selectors: ['.project-input']
     });
   } else {
     displayAlert(" Project name must contains more than 5 chars and less than 20 ", "red", ".global-alert");
@@ -212,10 +218,18 @@ const alertDisplayer = function alertDisplayer(topic, data) {
   displayAlert(...data.alert);
 };
 
+const inputCleaner = function inputCleaner(topic, data) {
+  data.selectors.forEach((selector) => {
+    dom.getElement(document, selector).value = '';
+  });
+};
+
 // subscribe
 pubsub.subscribe('modify/todoOrProjectList', saver);
 pubsub.subscribe('modify/todoOrProjectList', todosDisplyer);
 pubsub.subscribe('modify/todoOrProjectList', alertDisplayer); 
+
+pubsub.subscribe('create/todoOrProject', inputCleaner);
 
 /* ************************* Initialize App ************************* */
 storage.load();
