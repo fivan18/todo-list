@@ -2894,11 +2894,11 @@ eval("__webpack_require__.r(__webpack_exports__);\nconst dom = (function dom() {
 /*!**************************!*\
   !*** ./src/factories.js ***!
   \**************************/
-/*! exports provided: projectFactory */
+/*! exports provided: projectFactory, todoFactory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"projectFactory\", function() { return projectFactory; });\nconst projectFactory = (name) => {\n  const todos = [];\n\n  const addTodo = function addTodo(title, dueDate, description = '', priority = 0) {\n    return this.todos.push(todoFactory(title, dueDate, description, priority)) - 1;\n  };\n\n  return {\n    name,\n    todos,\n    addTodo,\n  };\n};\n\nconst todoFactory = (title, dueDate, description = '', priority = 0) => {\n  const checked = false;\n  const notes = [];\n  return {\n    title,\n    description,\n    dueDate,\n    priority,\n    notes,\n    checked,\n  };\n};\n\n\n\n\n//# sourceURL=webpack:///./src/factories.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"projectFactory\", function() { return projectFactory; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"todoFactory\", function() { return todoFactory; });\nconst todoFactory = (title, dueDate, description = '', priority = 0) => {\n  const checked = false;\n  const notes = [];\n  return {\n    title,\n    description,\n    dueDate,\n    priority,\n    notes,\n    checked,\n  };\n};\n\nconst projectFactory = (name) => {\n  const todos = [];\n\n  const addTodo = function addTodo(title, dueDate, description = '', priority = 0) {\n    return this.todos.push(todoFactory(title, dueDate, description, priority)) - 1;\n  };\n\n  return {\n    name,\n    todos,\n    addTodo,\n  };\n};\n\n\n\n\n//# sourceURL=webpack:///./src/factories.js?");
 
 /***/ }),
 
