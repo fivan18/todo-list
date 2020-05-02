@@ -1,6 +1,6 @@
-import { projectFactory } from './todo'
+import { projectFactory } from './todo';
 
-const local = (function() {
+const local = (function () {
   const storageName = 'projects';
   function saveArr(arr) {
     window.localStorage.setItem(storageName, JSON.stringify(arr));
@@ -14,11 +14,10 @@ const local = (function() {
     return arr;
   }
 
-  return  {
+  return {
     retrieveArr,
-    saveArr
+    saveArr,
   };
-
-})();
+}());
 
 export default local;

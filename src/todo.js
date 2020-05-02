@@ -9,8 +9,8 @@ const projectFactory = (name) => {
   return {
     name,
     todos,
-    addTodo
-  }
+    addTodo,
+  };
 };
 
 const todoFactory = (title, dueDate, description = '', priority = 0) => {
@@ -22,8 +22,8 @@ const todoFactory = (title, dueDate, description = '', priority = 0) => {
     dueDate,
     priority,
     notes,
-    checked
-  }
+    checked,
+  };
 };
 
 export { projectFactory };

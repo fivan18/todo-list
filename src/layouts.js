@@ -1,12 +1,11 @@
 import { formatRelative } from 'date-fns';
 
-const layouts = (function() {
-
+const layouts = (function () {
   function projectItem(item, index, indexParent = -1) {
-    return ` <li class="each-project" onClick="displayTodos(${index})"> ${item.name} </li> ` ;
+    return ` <li class="each-project" onClick="displayTodos(${index})"> ${item.name} </li> `;
   }
 
-  function todoInput(index){
+  function todoInput(index) {
     return `
       <div class="todo-input">
         <br>
@@ -28,11 +27,11 @@ const layouts = (function() {
     return `<button onclick="saveEditTodo(${index},${indexParent})" type="submit" name="button"> Save Todo</button>`;
   }
 
-  function todoItem(item, index, indexParent){
+  function todoItem(item, index, indexParent) {
     const priority = {
       0: 'Low',
       1: 'Medium',
-      2: 'High'
+      2: 'High',
     };
     const dateDistance = formatRelative(new Date(item.dueDate), new Date());
 
@@ -70,9 +69,8 @@ const layouts = (function() {
     todoItem,
     projectItem,
     todoInput,
-    todoSaveBtn
+    todoSaveBtn,
   };
-
-})();
+}());
 
 export { layouts };

@@ -1,7 +1,7 @@
 import local from './localStorage';
 import { projectFactory } from './todo';
 
-const storage = (function() {
+const storage = (function () {
   let projects = [];
 
   const getProjects = () => projects;
@@ -12,13 +12,13 @@ const storage = (function() {
   }
 
   function load() {
-    let localProjects = local.retrieveArr();
-    if (localProjects.length === 0){
+    const localProjects = local.retrieveArr();
+    if (localProjects.length === 0) {
       createDefaultProject();
-    }else {
+    } else {
       projects = [];
       localProjects.forEach(localProject => {
-        let completeProject = Object.assign(projectFactory(''), localProject);
+        const completeProject = Object.assign(projectFactory(''), localProject);
         projects.push(completeProject);
       });
     }
@@ -28,8 +28,8 @@ const storage = (function() {
     local.saveArr(projects);
   }
 
-  function createDefaultProject(){
-    let defaultProject = "Default Project";
+  function createDefaultProject() {
+    const defaultProject = 'Default Project';
     const project = projectFactory(defaultProject);
     addProject(project);
   }
@@ -38,11 +38,10 @@ const storage = (function() {
     save,
     addProject,
     load,
-    getProjects
+    getProjects,
   };
-
-})();
+}());
 
 export {
-  storage
+  storage,
 };
