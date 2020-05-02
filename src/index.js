@@ -1,7 +1,7 @@
 import './assets/css/style.css';
 import './assets/css/sidebar.css';
 import { projectFactory } from './factories';
-import { dom } from './domManipulation';
+import dom from './domManipulation';
 import storage from './activeStorage';
 import { layouts } from './layouts';
 import pubsub from './pubsub';

@@ -1,4 +1,4 @@
-const dom = (function () {
+const dom = (function dom() {
   function append(element, content) {
     element.insertAdjacentHTML('beforeend', content);
   }
@@ -36,6 +36,4 @@ const dom = (function () {
 }());
 
 
-export {
-  dom,
-};
+export default dom;
