@@ -8,12 +8,12 @@
 
   <div class="side-bar">
     <div class="app-name">
-      <h1>App name</h1>
+      <h1>TODO List</h1>
     </div>
     <div class="projects">
       <h2>Projects</h2>
       <form class="project-form" action="#">
-        <input class="project-input" type="text" placeholder=" New Project">
+        <input class="project-input" type="text" placeholder="Add New Project">
         <button class="project-button" type="submit" name="button"> + </button>
       </form>
 
@@ -43,17 +43,27 @@
         </div>
 
         <form id="edit-form" action="#">
-          <input id="editTitle" type="text" > <br>
-          <textarea id="editDescription" name="" rows="8" cols="80" placeholder="New Description"></textarea><br>
-          <input id="editDate" type="date" class="todo-date" name=""><br>
-          <select id="editPriority" name="">
-            <option value="2">High</option>
-            <option value="1">Medium</option>
-            <option value="0">Low</option>
-          </select>
-          <div class="save-todo">
+          <label> Name: --------->
+            <input id="editTitle" type="text" >
+          </label><br>
+          <label> Description: -->
+            <textarea id="editDescription" name="" rows="8" cols="80" placeholder="New Description"></textarea><br>
+          </label><br>
+          <label> Due Date: ----->
+            <input id="editDate" type="date" class="todo-date" name="">
+          </label><br>
+          <label> Priority: ------->
+            <select id="editPriority" name="">
+              <option value="2">High</option>
+              <option value="1">Medium</option>
+              <option value="0">Low</option>
+            </select>
+          </label><br>
+          <div class="buttons-edit-todo">
+            <div class="save-todo">
+            </div>
+            <button type="button" onClick="closeEditTodo()" name=""> Cancel</button>
           </div>
-          <button type="button" onClick="closeEditTodo()" name=""> Cancel</button>
         </form>
       </div>
 
