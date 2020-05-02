@@ -1,7 +1,7 @@
 import local from './localStorage';
 import { projectFactory } from './factories';
 
-const storage = (function () {
+const storage = (function storage() {
   let projects = [];
 
   const getProjects = () => projects;
@@ -9,6 +9,12 @@ const storage = (function () {
   function addProject(project) {
     projects.push(project);
     local.saveArr(projects);
+  }
+
+  function createDefaultProject() {
+    const defaultProject = 'Default Project';
+    const project = projectFactory(defaultProject);
+    addProject(project);
   }
 
   function load() {
@@ -28,12 +34,6 @@ const storage = (function () {
     local.saveArr(projects);
   }
 
-  function createDefaultProject() {
-    const defaultProject = 'Default Project';
-    const project = projectFactory(defaultProject);
-    addProject(project);
-  }
-
   return {
     save,
     addProject,
@@ -42,6 +42,4 @@ const storage = (function () {
   };
 }());
 
-export {
-  storage,
-};
+export default storage;
