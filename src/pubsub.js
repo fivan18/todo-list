@@ -1,73 +1,61 @@
-/* eslint-disable */
 /*
 
-  This is a Publish Subscribe Implementation made by Addy Osmani: https://twitter.com/addyosmani
+  This Publish/Subscribe Implementation was adapted from the one made by Addy Osmani:
+  https://twitter.com/addyosmani
+
   You can find it at:
   https://addyosmani.com/resources/essentialjsdesignpatterns/book/#observerpatternjavascript
 
 */
 
-const pubsub = {};
+const pubsub = (() => {
+  const events = {};
 
-(function (myObject) {
-  // Storage for topics that can be broadcast
-  // or listened to
-  const topics = {};
+  let subscribersId = -1;
 
-  // A topic identifier
-  let subUid = -1;
-
-  // Publish or broadcast events of interest
-  // with a specific topic name and arguments
-  // such as the data to pass along
-  myObject.publish = function (topic, args) {
-    if (!topics[topic]) {
+  function publish(event, data) {
+    if (!events[event]) {
       return false;
     }
 
-    const subscribers = topics[topic];
-    let len = subscribers ? subscribers.length : 0;
+    const subscribers = events[event];
+    subscribers.forEach((subscriber) => {
+      subscriber.func(event, data);
+    });
+    return true; // this
+  }
 
-    while (len--) {
-      subscribers[len].func(topic, args);
+  function subscribe(event, func) {
+    if (!events[event]) {
+      events[event] = [];
     }
 
-    return this;
-  };
-
-  // Subscribe to events of interest
-  // with a specific topic name and a
-  // callback function, to be executed
-  // when the topic/event is observed
-  myObject.subscribe = function (topic, func) {
-    if (!topics[topic]) {
-      topics[topic] = [];
-    }
-
-    const token = (++subUid).toString();
-    topics[topic].push({
+    subscribersId = +1;
+    const token = subscribersId.toString();
+    events[event].push({
       token,
       func,
     });
     return token;
-  };
+  }
 
-  // Unsubscribe from a specific
-  // topic, based on a tokenized reference
-  // to the subscription
-  myObject.unsubscribe = function (token) {
-    for (const m in topics) {
-      if (topics[m]) {
-        for (let i = 0, j = topics[m].length; i < j; i++) {
-          if (topics[m][i].token === token) {
-            topics[m].splice(i, 1);
-            return token;
-          }
-        }
+  function unsubscribe(token) {
+    const found = events.keys.some((event) => events[event].some((subscriber, index) => {
+      const areEqual = subscriber.token === token.toString();
+      if (areEqual) {
+        events[event].splice(index, 1);
       }
-    }
-    return this;
+      return areEqual;
+    }));
+
+    return found ? token : null; // this
+  }
+
+  return {
+    publish,
+    subscribe,
+    unsubscribe,
   };
-}(pubsub));
+})();
 
 export default pubsub;
