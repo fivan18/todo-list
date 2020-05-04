@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Todo list</title>
+</head>
+<body>
+
+  <div class="side-bar">
+    <div class="app-name">
+      <h1>TODO List</h1>
+    </div>
+    <div class="projects">
+      <h2>Projects</h2>
+      <form class="project-form" action="#">
+        <input class="project-input" type="text" placeholder="Add New Project">
+        <button class="project-button" type="submit" name="button"> + </button>
+      </form>
+
+      <ul class="display-projects">
+
+      </ul>
+
+    </div>
+  </div>
+
+  <div class="main">
+
+    <div class="global-alert">
+
+    </div>
+
+    <div class="create-todo-form">
+
+    </div>
+    <div class="todos">
+    </div>
+
+    <div class="editTodoForm" style="display: none;">
+      <div class="editTodoForm-content">
+
+        <div class="error-todo-form">
+        </div>
+
+        <form id="edit-form" action="#">
+          <label> Name: --------->
+            <input id="editTitle" type="text" >
+          </label><br>
+          <label> Description: -->
+            <textarea id="editDescription" name="" rows="8" cols="80" placeholder="New Description"></textarea><br>
+          </label><br>
+          <label> Due Date: ----->
+            <input id="editDate" type="date" class="todo-date" name="">
+          </label><br>
+          <label> Priority: ------->
+            <select id="editPriority" name="">
+              <option value="2">High</option>
+              <option value="1">Medium</option>
+              <option value="0">Low</option>
+            </select>
+          </label><br>
+          <div class="buttons-edit-todo">
+            <div class="save-todo">
+            </div>
+            <button type="button" onClick="closeEditTodo()" name=""> Cancel</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="./main.js"></script>
+
+
+</body>
+</html>
